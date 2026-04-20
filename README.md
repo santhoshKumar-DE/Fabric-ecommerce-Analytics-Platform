@@ -1,5 +1,15 @@
 # 🚀 Fabric E-Commerce Customer Analytics Platform
 
+## 🚀 Project Highlights
+
+- Built an end-to-end Data Engineering platform using Microsoft Fabric
+- Implemented batch + streaming pipelines
+- Designed CDC and incremental data processing
+- Integrated NoSQL (MongoDB) with analytics pipeline
+- Applied Spark optimization (skew handling, salting, coalesce)
+- Used Delta Lake features (ACID, Time Travel, VACUUM)
+- Implemented governance (RLS, semantic model)
+
 ## 📌 Project Overview
 This project demonstrates an end-to-end Data Engineering solution built on **Microsoft Fabric** using Medallion Architecture (Bronze, Silver, Gold).
 
