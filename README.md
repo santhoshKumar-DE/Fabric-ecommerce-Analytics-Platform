@@ -1,6 +1,8 @@
 # 🚀 Fabric E-Commerce Customer Analytics Platform
 
-## 🚀 Project Highlights
+End-to-end Data Engineering solution built on Microsoft Fabric using Medallion Architecture.
+
+## 📌 Project Highlights
 
 - Built an end-to-end Data Engineering platform using Microsoft Fabric
 - Implemented batch + streaming pipelines
