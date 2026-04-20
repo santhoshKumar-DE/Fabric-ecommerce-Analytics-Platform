@@ -80,3 +80,31 @@ It covers real-world scenarios including batch processing, streaming pipelines, 
 
 ## 📁 Project Structure
 
+notebooks/
+├── bronze/
+├── silver/
+└── gold/
+
+docs/
+architecture/
+screenshots/
+
+---
+
+## 📌 Key Learnings
+
+- Handling nested NoSQL data for analytics
+- Optimizing Spark jobs for performance
+- Designing scalable data pipelines
+- Implementing real-time and batch processing together
+
+---
+
+## ⚠️ Note
+
+Sensitive information such as credentials and connection strings are not included in this repository and are securely managed using Fabric Variable Library.
+
+---
+
+## ⭐ If you like this project, feel free to star the repository!
+
