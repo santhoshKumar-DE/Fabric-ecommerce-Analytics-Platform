@@ -9,8 +9,9 @@ End-to-end Data Engineering solution built on Microsoft Fabric using Medallion A
 - Designed CDC and incremental data processing
 - Integrated NoSQL (MongoDB) with analytics pipeline
 - Applied Spark optimization (skew handling, salting, coalesce)
-- Used Delta Lake features (ACID, Time Travel, VACUUM)
+- Used Delta Lake features (ACID, Time Travel, VACUUM, file compaction)
 - Implemented governance (RLS, semantic model)
+- Applied Spark optimization (skew handling, salting, repartition, coalesce, OOM mitigation)
 
 ## 📌 Project Overview
 This project demonstrates an end-to-end Data Engineering solution built on **Microsoft Fabric** using Medallion Architecture (Bronze, Silver, Gold).
