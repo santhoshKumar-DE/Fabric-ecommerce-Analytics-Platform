@@ -2,26 +2,45 @@
 
 End-to-end Data Engineering solution built on Microsoft Fabric using Medallion Architecture.
 
+---
+
 ## 📌 Project Highlights
 
 - Built an end-to-end Data Engineering platform using Microsoft Fabric
 - Implemented batch + streaming pipelines
 - Designed CDC and incremental data processing
 - Integrated NoSQL (MongoDB) with analytics pipeline
-- Applied Spark optimization (skew handling, salting, coalesce)
+- Applied Spark optimization (skew handling, salting, repartition, coalesce, OOM mitigation)
 - Used Delta Lake features (ACID, Time Travel, VACUUM, file compaction)
 - Implemented governance (RLS, semantic model)
-- Applied Spark optimization (skew handling, salting, repartition, coalesce, OOM mitigation)
+
+---
 
 ## 📌 Project Overview
+
 This project demonstrates an end-to-end Data Engineering solution built on **Microsoft Fabric** using Medallion Architecture (Bronze, Silver, Gold).
 
 It covers real-world scenarios including batch processing, streaming pipelines, CDC, incremental loading, NoSQL integration, and performance optimization.
+
 Multiple Lakehouses were used to simulate environment isolation (Bronze/Silver/Gold separation).
+
+KQL was used for real-time query exploration and monitoring scenarios.
+
+CI/CD pipeline implemented using Fabric Deployment Pipelines (Dev → Test → Prod), demonstrating real-world artifact promotion and environment management.
+
+👉 This solution enables scalable, optimized, and real-time analytics for e-commerce business insights.
 
 ---
 
 ## 🧱 Architecture
+
+The architecture follows Medallion design:
+
+- **Bronze Layer** → Raw ingestion (MongoDB, APIs, files)
+- **Silver Layer** → Data cleaning, transformation, flattening
+- **Gold Layer** → Aggregated business-ready analytics
+
+---
 
 ## 🔧 Technologies Used
 
@@ -33,6 +52,7 @@ Multiple Lakehouses were used to simulate environment isolation (Bronze/Silver/G
 - AWS S3 (via shortcuts)
 - Power BI
 - Eventstream (Streaming)
+- KQL (Real-time querying)
 
 ---
 
@@ -40,7 +60,7 @@ Multiple Lakehouses were used to simulate environment isolation (Bronze/Silver/G
 
 ### 🔹 Data Ingestion
 - Batch ingestion (CSV, JSON, Parquet)
-- REST API ingestion (with pagination & retry)
+- REST API ingestion (pagination & retry logic)
 - MongoDB NoSQL ingestion
 - Streaming ingestion using Eventstream
 
@@ -66,6 +86,7 @@ Multiple Lakehouses were used to simulate environment isolation (Bronze/Silver/G
 - Salting technique
 - Repartitioning
 - Coalesce (small file optimization)
+- OOM mitigation strategies
 
 ---
 
@@ -73,6 +94,7 @@ Multiple Lakehouses were used to simulate environment isolation (Bronze/Silver/G
 - ACID transactions
 - Time Travel
 - VACUUM (file cleanup)
+- File compaction
 
 ---
 
@@ -97,10 +119,13 @@ Multiple Lakehouses were used to simulate environment isolation (Bronze/Silver/G
 notebooks/
 ├── bronze/
 ├── silver/
-└── gold/
+├── gold/
+├── streaming/
+├── optimization/
 
 docs/
-architecture/
+├── architecture/
+
 screenshots/
 
 ---
@@ -121,4 +146,3 @@ Sensitive information such as credentials and connection strings are not include
 ---
 
 ## ⭐ If you like this project, feel free to star the repository!
-
