@@ -225,31 +225,6 @@ Include the following:
 - Real-world debugging scenarios
 
 ---
-
-## 🎤 Interview Talking Points
-
-- Medallion Architecture explanation
-- Data skew problem & solution (salting)
-- Batch vs Streaming processing
-- Incremental vs Full load
-- Spark execution flow (DAG → stages → tasks)
-- Delta Lake advantages
-- CI/CD implementation
-- Real-world troubleshooting
-
----
-
-## ⭐ Why This Project Stands Out
-
-- End-to-end Data Engineering pipeline
-- Real-world problem simulation
-- Includes optimization techniques
-- Combines batch + streaming processing
-- Multi-source ingestion (Files, MongoDB, S3)
-- Built on modern Fabric ecosystem
-
----
-
 ## 👤 Author
 
 Santhosh Kumar  
