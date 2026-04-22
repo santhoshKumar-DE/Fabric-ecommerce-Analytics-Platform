@@ -1,259 +1,260 @@
 # 🚀 Fabric E-Commerce Customer Analytics Platform
 
-End-to-end **Data Engineering solution** built on **Microsoft Fabric** using Medallion Architecture (Bronze → Silver → Gold).
-
----
-
-## 📌 Project Highlights
-
-- Built a full **enterprise-grade Data Engineering pipeline**
-- Implemented **batch + streaming ingestion**
-- Designed **CDC and incremental data processing**
-- Integrated **MongoDB (NoSQL) with analytics pipeline**
-- Applied **Spark optimization (skew handling, salting, repartition, coalesce, OOM mitigation)**
-- Used **Delta Lake features (ACID, Time Travel, VACUUM, compaction)**
-- Implemented **CI/CD pipeline (Dev → Test → Prod)**
-- Added **monitoring & logging framework**
-- Built **real-time analytics using KQL**
-
----
-
 ## 📌 Project Overview
+This project demonstrates an end-to-end **Data Engineering pipeline** built using **Microsoft Fabric**.  
+It simulates a real-world e-commerce analytics platform that ingests, processes, and transforms data into business-ready insights using a **Lakehouse + Medallion Architecture (Bronze → Silver → Gold)**.
 
-This project demonstrates a **real-world Data Engineering system** using Microsoft Fabric.
-
-It covers:
-- Batch + Streaming pipelines
-- CDC & incremental loads
-- Multi-source ingestion (API, MongoDB, files)
-- Performance optimization
-- CI/CD deployment
-- Real-time monitoring
-
-👉 Designed to simulate **enterprise-level data platform architecture**
+The project emphasizes **scalability, performance optimization, and real-world debugging scenarios**.
 
 ---
 
-## 🏗️ Architecture
+## 🧠 Business Problem
+E-commerce businesses require insights such as:
+- Customer distribution across regions
+- Revenue contribution by category
+- Customer lifecycle trends
+- Real-time order monitoring
 
-Sources (API, MongoDB, Streaming)
-↓
-Bronze Layer (Raw - Delta)
-↓
-Silver Layer (Cleaned & Transformed)
-↓
-Gold Layer (Business KPIs)
-↓
-Analytics / Monitoring (KQL / Power BI)
+Raw data from multiple sources is not analytics-ready.
 
----
-
-## 🔁 CI/CD Pipeline (Dev → Test → Prod)
-
-![CI/CD Pipeline](docs/screenshots/cicd_pipeline.png)
-
-- Fabric Deployment Pipeline used
-- Promotes artifacts across environments
-- Ensures production stability
+👉 This project solves that by building a structured pipeline:
+**Raw Data → Clean Data → Business Insights**
 
 ---
 
-## 🥉 Bronze Layer (Raw Ingestion)
+## 🏗 Architecture Overview
 
-✔ Ingested data from:
-- REST API (pagination + retry)
-- MongoDB Atlas (NoSQL)
-- Streaming events (JSON)
+### Data Sources
+- CSV / JSON / Parquet files
+- MongoDB (NoSQL ingestion)
+- AWS S3 (external source)
+- Streaming event data (order events)
 
-✔ Stored as **Delta tables**
+### Processing
+- Microsoft Fabric (Spark Engine)
+- PySpark transformations
+
+### Storage
+- OneLake (Delta Lake format)
+
+### Serving Layer
+- Semantic Model
+- Power BI Report
 
 ---
 
-## 🧼 Silver Layer (Transformation & Cleaning)
+## 🔄 Data Flow (Medallion Architecture)
 
-![Silver Transformation](docs/screenshots/silver_transformation.png)
+### 🥉 Bronze Layer (Raw Ingestion)
+- Ingested data from multiple sources
+- Stored as Delta tables
+- No transformations applied
 
-✔ Implemented:
-- Null handling (`coalesce`)
-- Column standardization
-- Type casting
+---
+
+### 🥈 Silver Layer (Data Cleaning & Standardization)
+Applied real-world transformations:
+- Trim & lowercase normalization
+- Regex cleaning
+- Null handling using `coalesce`
+- Phone masking
+- Email domain extraction
 - Deduplication
-- Data quality checks
-
-✔ Flattened nested NoSQL data using `explode()`
-
----
-
-## 🥇 Gold Layer (Business Analytics)
-
-![Gold Analytics](docs/screenshots/gold_analytics.png)
-
-✔ Built KPI tables:
-- Category-level sales
-- Revenue contribution
-- Product performance insights
-
-✔ Used:
-- Fact + Dimension joins
-- Aggregations
-- Business logic
+- Type casting
+- Data quality validation
 
 ---
 
-## ⚡ Streaming Pipeline
+### 🥇 Gold Layer (Business Aggregation)
+Built curated business KPI tables.
 
-![Streaming Pipeline](docs/screenshots/streaming_pipeline.png)
+Example:
 
-✔ Implemented:
-- Structured Streaming
-- Schema enforcement
-- File-based ingestion
+gold_customer_summary
 
-✔ Supports:
-- Stream-static join
-- Stream processing
+country
+total_customers
+first_customer_date
+latest_customer_date
 
----
-
-## 🔗 MongoDB Integration
-
-![MongoDB Integration](docs/screenshots/mongodb_read.png)
-
-✔ Connected to MongoDB Atlas  
-✔ Extracted real-time data into Bronze layer  
 
 ---
 
-## 📊 Lakehouse (Medallion Architecture)
+## ⚡ Advanced Data Engineering Features
 
-![Lakehouse Tables](docs/screenshots/lakehouse_tables.png)
+### 🔁 Change Data Capture (CDC)
+- Implemented using MERGE
+- Supports incremental updates and inserts
 
-✔ Organized into:
-- Bronze
-- Silver
-- Gold
-
-✔ Stored using Delta Lake
-
----
-
-## ⚙️ Spark Optimization (Advanced)
-
-![Spark Optimization](docs/screenshots/spark_optimization.png)
-
-✔ Implemented:
-- Data skew simulation
-- Salting technique
-- Repartition & coalesce
-- Shuffle optimization
-- OOM mitigation
-
----
-
-## 📈 Monitoring & Logging
-
-![Monitoring Logs](docs/screenshots/monitoring_logs.png)
-
-✔ Created pipeline logging table:
-- Run ID
-- Status
-- Rows processed
-- Execution time
-- Watermark tracking
-
----
-
-## ⚡ Real-Time Monitoring (KQL)
-
-![KQL Monitoring](docs/screenshots/kql_monitoring.png)
-
-✔ Built monitoring using:
-- Eventhouse
-- KQL Queries
-
-✔ Enables:
-- Real-time insights
-- Operational monitoring
-
----
-
-## 🔄 Incremental Processing
-
-✔ Implemented:
+### ⏱ Incremental Processing
 - Date-based watermark
-- Timestamp-based incremental loads
+- Timestamp-based watermark (handles multiple loads/day)
 
-✔ Ensures:
-- Efficient processing
-- No duplicate ingestion
-
----
-
-## 🔧 Technologies Used
-
-- Microsoft Fabric (OneLake, Lakehouse, Notebooks)
-- Spark (PySpark)
-- Delta Lake
-- MongoDB Atlas
-- REST APIs
-- AWS S3 (Shortcuts)
-- KQL (Real-time analytics)
-- Eventstream (Streaming)
+### 🔄 Streaming Ingestion
+- File-based streaming simulation
+- Micro-batch processing
+- Schema validation
 
 ---
 
-## 📊 Business Use Cases
+## ⚙️ Spark Optimization & Internals
 
-- Customer analytics
-- Product performance analysis
-- Revenue insights
-- Order monitoring
+### 🔥 Data Skew Handling
+- Simulated skewed data
+- Implemented **salting technique**
+- Improved partition balance
 
----
+### 🔀 Shuffle Optimization
+- Observed Spark DAG (Stages, Tasks)
+- Reduced shuffle impact
 
-## 📁 Project Structure
-
-notebooks/
-bronze/
-silver/
-gold/
-streaming/
-optimization/
-
-docs/
-screenshots/
-
-README.md
+### ⚡ Join Optimization
+- Broadcast joins
+- Sort-merge joins
+- Partition tuning
 
 ---
 
-## 🧠 Key Learnings
+## 🧱 Delta Lake Features
 
-- Spark internals (DAG, shuffle, stages)
-- Data skew handling & optimization
-- Delta Lake (ACID, Time Travel)
-- Streaming vs Batch processing
-- CI/CD in Data Engineering
-- Real-time analytics using KQL
+- ACID Transactions
+- Time Travel (version history)
+- Schema enforcement
+- VACUUM (file cleanup)
 
 ---
 
-## ⚠️ Note
+## 🔁 CI/CD Pipeline (Fabric Deployment Pipeline)
 
-Sensitive information (credentials, connection strings) is not included and is managed securely using Fabric Variable Library.
+Environment setup:
+- Dev → Test → Prod
+
+Features:
+- Automated deployment
+- Environment isolation
+- Version control flow
+
+---
+
+## 📡 Monitoring & Logging
+
+- Custom pipeline logging table
+- Tracks:
+  - Pipeline name
+  - Run timestamps
+  - Status
+  - Row counts
+  - Watermark
 
 ---
 
-## 💼 Why This Project Matters
+## 📊 KQL Monitoring (Real-Time)
 
-This project simulates **real enterprise Data Engineering workflows**:
-
-✔ Multi-source ingestion  
-✔ Performance optimization  
-✔ CI/CD deployment  
-✔ Monitoring & observability  
-✔ Real-time + batch architecture  
+- Eventhouse created for monitoring
+- KQL queries for real-time analytics
+- Order event tracking
 
 ---
+
+## 📊 Power BI Reporting
+
+Built report on top of semantic model.
+
+### Example Insight:
+Customer distribution by country:
+
+- US → 25
+- IN → 18
+- UK → 12
+- AU → 10
+- DE → 8
+
+---
+
+## 🧩 Semantic Model (Star Schema)
+
+- Gold table exposed as semantic model
+- Measures created:
+  - Total Customers
+- Used for reporting layer
+
+---
+
+## 📸 Project Screenshots
+
+Include the following:
+- Lakehouse tables view
+- Notebook transformations
+- CI/CD pipeline (Dev → Test → Prod)
+- Streaming ingestion
+- MongoDB ingestion
+- Semantic model view
+- Power BI report output
+
+---
+
+## 🚀 How to Run
+
+1. Create Microsoft Fabric workspace  
+2. Create Lakehouse (OneLake)  
+3. Upload datasets  
+4. Run notebooks in sequence:
+   - Bronze → Silver → Gold  
+5. Create semantic model  
+6. Build Power BI report  
+
+---
+
+## ⚠️ Challenges Faced
+
+- Handling data skew in joins
+- Delta schema enforcement errors
+- Managing incremental loads
+- Understanding Spark execution (DAG, stages)
+- CI/CD workspace configuration issues
+
+---
+
+## 🎯 Key Learnings
+
+- Spark internals (DAG, shuffle, joins)
+- Data pipeline design (Medallion architecture)
+- Performance tuning techniques
+- Delta Lake fundamentals
+- Fabric ecosystem usage
+- Real-world debugging scenarios
+
+---
+
+## 🎤 Interview Talking Points
+
+- Medallion Architecture explanation
+- Data skew problem & solution (salting)
+- Batch vs Streaming processing
+- Incremental vs Full load
+- Spark execution flow (DAG → stages → tasks)
+- Delta Lake advantages
+- CI/CD implementation
+- Real-world troubleshooting
+
+---
+
+## ⭐ Why This Project Stands Out
+
+- End-to-end Data Engineering pipeline
+- Real-world problem simulation
+- Includes optimization techniques
+- Combines batch + streaming processing
+- Multi-source ingestion (Files, MongoDB, S3)
+- Built on modern Fabric ecosystem
+
+---
+
+## 👤 Author
+
+Santhosh Kumar  
+Data Engineer | Microsoft Fabric | Spark | Azure
 
 ## ⭐ If you like this project, feel free to star the repository!
+
+
